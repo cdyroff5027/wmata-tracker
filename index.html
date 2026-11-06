@@ -48,7 +48,7 @@
   </div>
 
   <div class="mx-auto max-w-md">
-    <!-- TOP HEADER: TITLE + REFRESH NOW BUTTON -->
+    <!-- TOP HEADER: REFRESH BUTTON & SECONDS AGO -->
     <header class="mb-2 rounded-xl border border-slate-800 bg-slate-900/90 p-2 shadow-lg">
       <div class="flex items-center justify-between gap-3">
         <!-- REFRESH BUTTON -->
@@ -65,15 +65,15 @@
         </div>
       </div>
 
-      <!-- Retained hidden elements for script compatibility -->
+      <!-- Hidden elements for script compatibility -->
       <span id="commuteScheduleBadge" class="hidden"></span>
       <span id="feedStatusText" class="hidden"></span>
     </header>
 
-    <!-- COMMUTE CARDS CONTAINER (Automatically reordered by time of day) -->
-    <main id="commuteCardsContainer" class="space-y-2">
+    <!-- COMMUTE CARDS CONTAINER -->
+    <main id="commuteCardsContainer" class="space-y-2.5">
 
-      <!-- AFTERNOON PANEL 1: FEDERAL TRIANGLE -> VIENNA / ASHBURN / FRANCONIA -->
+      <!-- AFTERNOON PANEL 1: FEDERAL TRIANGLE -> VA -->
       <section id="cardFederalTriangle" class="rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-2.5 shadow-md transition-all">
         <div class="flex items-center justify-between gap-1.5 border-b border-slate-800/80 pb-1.5">
           <div class="flex items-center gap-1.5">
@@ -86,7 +86,7 @@
               <div class="text-xs font-black text-white leading-tight">
                 Federal Triangle &rarr; <span class="text-amber-300">Vienna / Ashburn / Franconia</span>
               </div>
-              <div class="text-[9px] text-slate-400">Station D01 &bull; Track 2 (North / Westbound to VA)</div>
+              <div class="text-[9px] text-slate-400">Station D01 &bull; Track 2 (Leg 1 &bull; 2m ride to Metro Ctr)</div>
             </div>
           </div>
           <div id="fedTrianglePaceBadge" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-slate-300">
@@ -99,16 +99,16 @@
         </div>
       </section>
 
-      <!-- AFTERNOON PANEL 2: METRO CENTER -> GLENMONT (RED LINE) -->
+      <!-- AFTERNOON PANEL 2: METRO CENTER UPPER (RED LINE GLENMONT) -->
       <section id="cardEvening" class="rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-2.5 shadow-md transition-all">
         <div class="flex items-center justify-between gap-1.5 border-b border-slate-800/80 pb-1.5">
           <div class="flex items-center gap-1.5">
             <span class="rounded bg-rose-600 px-1.5 py-0.5 text-[10px] font-black uppercase text-white">RD</span>
             <div>
               <div class="text-xs font-black text-white leading-tight">
-                Metro Center &rarr; <span class="text-rose-400">Glenmont</span>
+                Transfer &rarr; <span class="text-rose-400">Glenmont (Upper Level)</span>
               </div>
-              <div class="text-[9px] text-slate-400">Station A01 &bull; Track 1 (Red Line)</div>
+              <div id="eveningTransferSubtext" class="text-[9px] text-emerald-400 font-semibold">Station A01 &bull; Track 1 (Red Line)</div>
             </div>
           </div>
           <div id="eveningPaceBadge" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-slate-300">
@@ -121,16 +121,16 @@
         </div>
       </section>
 
-      <!-- MORNING COMMUTE CARD: SILVER SPRING -> SHADY GROVE -->
+      <!-- MORNING PANEL 1: SILVER SPRING -> SHADY GROVE -->
       <section id="cardMorning" class="rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-2.5 shadow-md transition-all">
         <div class="flex items-center justify-between gap-1.5 border-b border-slate-800/80 pb-1.5">
           <div class="flex items-center gap-1.5">
-            <span class="rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase text-amber-300">AM</span>
+            <span class="rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase text-amber-300">Morning</span>
             <div>
               <div class="text-xs font-black text-white leading-tight">
                 Silver Spring &rarr; <span class="text-rose-400">Shady Grove</span>
               </div>
-              <div class="text-[9px] text-slate-400">Station B08 &bull; Track 2 (Red Line)</div>
+              <div class="text-[9px] text-slate-400">Station B08 &bull; Track 2 (Leg 1 &bull; 15m ride to Metro Ctr)</div>
             </div>
           </div>
           <div id="morningPaceBadge" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-slate-300">
@@ -140,6 +140,32 @@
 
         <div class="mt-2">
           <div id="morningQuickMinutesRow" class="grid grid-flow-col auto-cols-fr gap-1.5"></div>
+        </div>
+      </section>
+
+      <!-- MORNING PANEL 2: METRO CENTER LOWER LEVEL (LARGO / NEW CARROLLTON) -->
+      <section id="cardMetroCenterLower" class="rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-2.5 shadow-md transition-all">
+        <div class="flex items-center justify-between gap-1.5 border-b border-slate-800/80 pb-1.5">
+          <div class="flex items-center gap-1.5">
+            <div class="flex items-center -space-x-1">
+              <span class="rounded bg-sky-600 px-1.5 py-0.5 text-[10px] font-black uppercase text-white ring-1 ring-slate-900">BL</span>
+              <span class="rounded bg-slate-400 px-1.5 py-0.5 text-[10px] font-black uppercase text-slate-950 ring-1 ring-slate-900">SV</span>
+              <span class="rounded bg-orange-500 px-1.5 py-0.5 text-[10px] font-black uppercase text-white ring-1 ring-slate-900">OR</span>
+            </div>
+            <div>
+              <div class="text-xs font-black text-white leading-tight">
+                Transfer &rarr; <span class="text-sky-300">Largo / New Carrollton</span>
+              </div>
+              <div id="morningTransferSubtext" class="text-[9px] text-emerald-400 font-semibold">Station C01 &bull; Track 1 (Lower Level)</div>
+            </div>
+          </div>
+          <div id="metroCenterLowerPaceBadge" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-slate-300">
+            Checking...
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <div id="metroCenterLowerQuickMinutesRow" class="grid grid-flow-col auto-cols-fr gap-1.5"></div>
         </div>
       </section>
 
@@ -156,7 +182,7 @@
           <span id="pauseBtnLabel">Pause Auto</span>
         </button>
       </div>
-      <span id="feedModeIndicator" class="text-[10px] text-slate-400">Stations B08, A01, D01</span>
+      <span id="feedModeIndicator" class="text-[10px] text-slate-400">4 Stations Active</span>
     </footer>
   </div>
 
@@ -176,9 +202,6 @@
             WMATA API Key
           </label>
           <input id="inputApiKey" type="text" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 font-mono-led text-xs text-white focus:border-rose-500 focus:outline-none" />
-          <p class="mt-1 text-[10px] text-slate-400">
-            Default Tier key from <a href="https://developer.wmata.com/" target="_blank" rel="noopener noreferrer" class="text-rose-400 underline">developer.wmata.com</a>.
-          </p>
         </div>
 
         <div>
@@ -186,9 +209,9 @@
             Display Order
           </label>
           <select id="selectTimeMode" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-white focus:border-rose-500 focus:outline-none">
-            <option value="auto">Automatic (Silver Spring AM / Metro Center &amp; Fed Triangle PM)</option>
-            <option value="am_first">Always Silver Spring First</option>
-            <option value="pm_first">Always Afternoon Commute First</option>
+            <option value="auto">Automatic (Morning AM / Afternoon PM)</option>
+            <option value="am_first">Always Morning First</option>
+            <option value="pm_first">Always Afternoon First</option>
           </select>
         </div>
 
@@ -212,7 +235,7 @@
 
       <div class="mt-4 flex items-center justify-between gap-2 border-t border-slate-800 pt-3">
         <button id="btnResetDemoKey" type="button" class="text-[11px] text-slate-400 hover:text-white underline">
-          Reset Demo Key
+          Reset Default Key
         </button>
         <div class="flex items-center gap-1.5">
           <button id="btnCancelSettings" type="button" class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800">
@@ -228,10 +251,16 @@
 
   <script>
     (function () {
-      const DEFAULT_DEMO_KEY = 'e13626d03d8e4c03ac07f95541b3091b';
+      const DEFAULT_USER_KEY = '335b553dd00142b5b72a650a2672c2e6';
+
+      // Pure Train Ride Times (Zero escalator buffer built-in so you see raw gaps to sprint)
+      // Silver Spring (B08) to Metro Center (A01) pure rail ride time = 15 min
+      const MORNING_RIDE_TRANSFER_MIN = 15;
+      // Federal Triangle (D01) to Metro Center (C01) pure rail ride time (1 stop) = 2 min
+      const EVENING_RIDE_TRANSFER_MIN = 2;
 
       const state = {
-        apiKey: DEFAULT_DEMO_KEY,
+        apiKey: DEFAULT_USER_KEY,
         refreshSeconds: 20,
         secondsRemaining: 20,
         isPaused: false,
@@ -239,7 +268,13 @@
         timeMode: 'auto',
         lastFetchTime: null,
         isLiveFeed: false,
-        trains: []
+        trains: [],
+        
+        // Transfer State Management (persisted in localStorage)
+        // selectedIndex: 0 = Next (1st train), 1 = 2nd train, 2 = 3rd train
+        // onBoardSince: timestamp (ms) when user tapped "On Board"
+        morningSelection: { index: 0, onBoardSince: null },
+        eveningSelection: { index: 0, onBoardSince: null }
       };
 
       function loadSavedSettings() {
@@ -255,6 +290,27 @@
           if (['auto', 'am_first', 'pm_first'].includes(savedTimeMode)) {
             state.timeMode = savedTimeMode;
           }
+
+          // Load active trip state
+          const amState = JSON.parse(localStorage.getItem('wmata_commute_am_trip') || '{}');
+          if (amState && amState.onBoardSince) {
+            // Expire after 35 minutes
+            if (Date.now() - amState.onBoardSince < 35 * 60 * 1000) {
+              state.morningSelection = amState;
+            } else {
+              localStorage.removeItem('wmata_commute_am_trip');
+            }
+          }
+
+          const pmState = JSON.parse(localStorage.getItem('wmata_commute_pm_trip') || '{}');
+          if (pmState && pmState.onBoardSince) {
+            // Expire after 20 minutes
+            if (Date.now() - pmState.onBoardSince < 20 * 60 * 1000) {
+              state.eveningSelection = pmState;
+            } else {
+              localStorage.removeItem('wmata_commute_pm_trip');
+            }
+          }
         } catch (err) {}
       }
 
@@ -263,6 +319,16 @@
           localStorage.setItem('wmata_commute_api_key', state.apiKey);
           localStorage.setItem('wmata_commute_interval', String(state.refreshSeconds));
           localStorage.setItem('wmata_commute_time_mode', state.timeMode);
+        } catch (err) {}
+      }
+
+      function saveTripState(period) {
+        try {
+          if (period === 'am') {
+            localStorage.setItem('wmata_commute_am_trip', JSON.stringify(state.morningSelection));
+          } else {
+            localStorage.setItem('wmata_commute_pm_trip', JSON.stringify(state.eveningSelection));
+          }
         } catch (err) {}
       }
 
@@ -278,7 +344,7 @@
         if (window._toastTimer) clearTimeout(window._toastTimer);
         window._toastTimer = setTimeout(function () {
           container.classList.add('hidden');
-        }, 2000);
+        }, 2200);
       }
 
       function getSimulatedTrains() {
@@ -289,22 +355,24 @@
         };
         return [
           // Silver Spring (B08) -> Shady Grove (A15)
-          { Car: '8', Destination: 'Shady Grv', DestinationCode: 'A15', DestinationName: 'Shady Grove', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: secOffset < 10 ? 'ARR' : calcMin(2) },
-          { Car: '6', Destination: 'Grosvenor', DestinationCode: 'A11', DestinationName: 'Grosvenor-Strathmore', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: calcMin(6) },
-          { Car: '8', Destination: 'Shady Grv', DestinationCode: 'A15', DestinationName: 'Shady Grove', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: calcMin(11) },
-          { Car: '8', Destination: 'Shady Grv', DestinationCode: 'A15', DestinationName: 'Shady Grove', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: calcMin(16) },
+          { Car: '8', Destination: 'Shady Grv', DestinationCode: 'A15', DestinationName: 'Shady Grove', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: secOffset < 10 ? 'ARR' : calcMin(3) },
+          { Car: '6', Destination: 'Grosvenor', DestinationCode: 'A11', DestinationName: 'Grosvenor-Strathmore', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: calcMin(8) },
+          { Car: '8', Destination: 'Shady Grv', DestinationCode: 'A15', DestinationName: 'Shady Grove', Group: '2', Line: 'RD', LocationCode: 'B08', LocationName: 'Silver Spring', Min: calcMin(13) },
 
-          // Metro Center (A01) -> Glenmont (B11)
-          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: secOffset > 48 ? 'ARR' : calcMin(3) },
-          { Car: '6', Destination: 'SilvrSpg', DestinationCode: 'B08', DestinationName: 'Silver Spring', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(7) },
-          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(12) },
-          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(18) },
+          // Metro Center Lower Level (C01) -> Largo / New Carrollton (Track 1)
+          { Car: '8', Destination: 'Largo', DestinationCode: 'G05', DestinationName: 'Downtown Largo', Group: '1', Line: 'BL', LocationCode: 'C01', LocationName: 'Metro Center', Min: calcMin(16) },
+          { Car: '8', Destination: 'New Carr', DestinationCode: 'D13', DestinationName: 'New Carrollton', Group: '1', Line: 'OR', LocationCode: 'C01', LocationName: 'Metro Center', Min: calcMin(20) },
+          { Car: '8', Destination: 'Largo', DestinationCode: 'G05', DestinationName: 'Downtown Largo', Group: '1', Line: 'SV', LocationCode: 'C01', LocationName: 'Metro Center', Min: calcMin(24) },
 
           // Federal Triangle (D01) -> Vienna / Ashburn / Franconia (Track 2)
           { Car: '8', Destination: 'Vienna', DestinationCode: 'K08', DestinationName: 'Vienna', Group: '2', Line: 'OR', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: secOffset < 12 ? 'ARR' : calcMin(2) },
-          { Car: '8', Destination: 'Ashburn', DestinationCode: 'N06', DestinationName: 'Ashburn', Group: '2', Line: 'SV', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: calcMin(5) },
-          { Car: '8', Destination: 'Franconia', DestinationCode: 'J03', DestinationName: 'Franconia-Springfield', Group: '2', Line: 'BL', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: calcMin(9) },
-          { Car: '8', Destination: 'Vienna', DestinationCode: 'K08', DestinationName: 'Vienna', Group: '2', Line: 'OR', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: calcMin(13) }
+          { Car: '8', Destination: 'Ashburn', DestinationCode: 'N06', DestinationName: 'Ashburn', Group: '2', Line: 'SV', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: calcMin(6) },
+          { Car: '8', Destination: 'Franconia', DestinationCode: 'J03', DestinationName: 'Franconia-Springfield', Group: '2', Line: 'BL', LocationCode: 'D01', LocationName: 'Federal Triangle', Min: calcMin(11) },
+
+          // Metro Center Upper (A01) -> Glenmont (Track 1)
+          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(5) },
+          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(11) },
+          { Car: '8', Destination: 'Glenmont', DestinationCode: 'B11', DestinationName: 'Glenmont', Group: '1', Line: 'RD', LocationCode: 'A01', LocationName: 'Metro Center', Min: calcMin(17) }
         ];
       }
 
@@ -313,6 +381,13 @@
         if (minVal === 'ARR') return -1;
         const n = parseInt(minVal, 10);
         return isNaN(n) ? 999 : n;
+      }
+
+      function getMinutesAsInt(minVal) {
+        if (minVal === 'BRD') return 0;
+        if (minVal === 'ARR') return 0.5;
+        const n = parseInt(minVal, 10);
+        return isNaN(n) ? 0 : n;
       }
 
       function isShadyGroveBound(t) {
@@ -339,25 +414,29 @@
         return false;
       }
 
-      // Federal Triangle: Trains traveling toward Vienna (OR), Ashburn (SV), or Franconia-Springfield (BL)
       function isFederalTriangleBound(t) {
         if (t.LocationCode !== 'D01') return false;
         const line = (t.Line || '').toUpperCase();
         if (!['OR', 'SV', 'BL'].includes(line)) return false;
-
         const destCode = t.DestinationCode || '';
         const destName = ((t.DestinationName || '') + ' ' + (t.Destination || '')).toLowerCase();
-
-        // Track 2 / Westbound (Group 2)
         if (t.Group === '2') return true;
-
-        // By destination codes or names
         if (destCode === 'K08' || destName.includes('vienna')) return true;
         if (destCode === 'N06' || destName.includes('ashburn')) return true;
         if (destCode === 'J03' || destName.includes('franconia')) return true;
-        // Short-turns toward VA (West Falls Church, Ballston)
         if (destCode === 'K05' || destName.includes('falls church') || destName.includes('ballston')) return true;
+        return false;
+      }
 
+      function isMetroCenterLowerBound(t) {
+        if (t.LocationCode !== 'C01') return false;
+        const line = (t.Line || '').toUpperCase();
+        if (!['BL', 'OR', 'SV'].includes(line)) return false;
+        const destCode = t.DestinationCode || '';
+        const destName = ((t.DestinationName || '') + ' ' + (t.Destination || '')).toLowerCase();
+        if (t.Group === '1') return true;
+        if (destCode === 'G05' || destName.includes('largo')) return true;
+        if (destCode === 'D13' || destName.includes('carrollton') || destName.includes('carr')) return true;
         return false;
       }
 
@@ -365,17 +444,14 @@
         if (!trains || trains.length === 0) {
           return { text: 'No Trains', cls: 'border border-slate-700 bg-slate-800 text-slate-400' };
         }
-        const firstMin = trains[0].Min;
-        if (firstMin === 'BRD' || firstMin === 'ARR') {
+        const firstRawMin = trains[0].Min;
+        if (firstRawMin === 'BRD' || firstRawMin === 'ARR') {
           return { text: 'AT PLATFORM!', cls: 'border border-rose-500 bg-rose-600/30 text-rose-200 animate-brd' };
         }
-        const n = parseInt(firstMin, 10);
-        if (n <= 2) {
-          return { text: 'RUN (' + n + 'm)', cls: 'border border-rose-500/80 bg-rose-500/20 text-rose-300' };
-        }
-        if (n <= 5) {
-          return { text: 'HUSTLE (' + n + 'm)', cls: 'border border-amber-500/60 bg-amber-500/20 text-amber-300' };
-        }
+        const n = parseInt(firstRawMin, 10);
+        if (isNaN(n)) return { text: 'APPROACHING', cls: 'border border-amber-500/60 bg-amber-500/20 text-amber-300' };
+        if (n <= 2) return { text: 'RUN (' + n + 'm)', cls: 'border border-rose-500/80 bg-rose-500/20 text-rose-300' };
+        if (n <= 5) return { text: 'HUSTLE (' + n + 'm)', cls: 'border border-amber-500/60 bg-amber-500/20 text-amber-300' };
         return { text: 'EASY WALK (' + n + 'm)', cls: 'border border-emerald-500/50 bg-emerald-500/15 text-emerald-300' };
       }
 
@@ -387,44 +463,62 @@
         return '<span class="rounded bg-rose-600 px-1 py-0.2 text-[9px] font-black uppercase text-white">RD</span>';
       }
 
-      function renderQuickMinuteBlocks(trains, showLineBadge) {
-        if (!trains || trains.length === 0) {
-          return '<div class="w-full rounded-lg border border-slate-800 bg-slate-950 py-2.5 text-center text-xs text-slate-400">No upcoming trains reported</div>';
+      // Renders Leg 1 Cards (with Interactive Tap-to-Select and "On Board" state)
+      function renderLeg1Cards(trains, period) {
+        const selection = period === 'am' ? state.morningSelection : state.eveningSelection;
+        const isOnBoard = !!selection.onBoardSince;
+        const totalRideMin = period === 'am' ? MORNING_RIDE_TRANSFER_MIN : EVENING_RIDE_TRANSFER_MIN;
+
+        // If user is currently ON BOARD
+        if (isOnBoard) {
+          const elapsedSec = Math.floor((Date.now() - selection.onBoardSince) / 1000);
+          const elapsedMin = elapsedSec / 60;
+          const minLeft = Math.max(0, Math.ceil(totalRideMin - elapsedMin));
+          const destStation = period === 'am' ? 'Metro Center (Lower)' : 'Metro Center (Upper)';
+
+          return (
+            '<div class="col-span-full flex items-center justify-between rounded-lg border-2 border-emerald-500/70 bg-emerald-950/40 p-2 text-left">' +
+              '<div class="flex items-center gap-2">' +
+                '<span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600 text-sm font-black text-white">🚆</span>' +
+                '<div>' +
+                  '<div class="text-[11px] font-black uppercase text-emerald-300">En Route on Train</div>' +
+                  '<div class="text-[10px] text-slate-300">Arriving at ' + destStation + ' in <strong class="font-mono-led text-white font-black">' + minLeft + 'm</strong></div>' +
+                '</div>' +
+              '</div>' +
+              '<button type="button" data-action-reset-trip="' + period + '" class="rounded bg-slate-800 px-2 py-1 text-[10px] font-bold text-slate-300 hover:bg-slate-700">Cancel</button>' +
+            '</div>'
+          );
         }
-        return trains.slice(0, 4).map(function (t, idx) {
+
+        if (!trains || trains.length === 0) {
+          return '<div class="col-span-full rounded-lg border border-slate-800 bg-slate-950 py-2.5 text-center text-xs text-slate-400">No trains reported right now</div>';
+        }
+
+        const cards = trains.slice(0, 3).map(function (t, idx) {
+          const isSelected = selection.index === idx;
           const isImmediate = t.Min === 'BRD' || t.Min === 'ARR';
-          const numMin = parseInt(t.Min, 10);
-          const isUrgent = isImmediate || (!isNaN(numMin) && numMin <= 3);
+          const cardBorder = isSelected
+            ? 'border-rose-500 bg-rose-950/40 ring-2 ring-rose-500/70 shadow-lg'
+            : 'border-slate-800/80 bg-slate-950/70 hover:border-slate-700';
 
-          const cardBorder = idx === 0
-            ? (isUrgent ? 'border-rose-500/80 bg-rose-950/40 ring-1 ring-rose-500/40' : 'border-amber-500/60 bg-slate-950')
-            : 'border-slate-800/80 bg-slate-950/60';
-
-          const bigTextClass = t.Min === 'BRD'
-            ? 'led-red animate-brd'
-            : (t.Min === 'ARR' ? 'led-green animate-brd' : 'led-amber');
-
+          const bigTextClass = t.Min === 'BRD' ? 'led-red animate-brd' : (t.Min === 'ARR' ? 'led-green animate-brd' : 'led-amber');
           const subUnit = isImmediate ? t.Min : 'MIN';
           const destCode = t.DestinationCode || '';
           const destName = ((t.DestinationName || '') + ' ' + (t.Destination || '')).toLowerCase();
 
-          let shortDest = '';
+          let shortDest = t.Destination || 'Train';
           if (destCode === 'A15' || destName.includes('shady')) shortDest = 'Shady Grv';
-          else if (destCode === 'A11' || destName.includes('grosv')) shortDest = 'Grosv';
-          else if (destCode === 'B11' || destName.includes('glenmont')) shortDest = 'Glenmont';
-          else if (destCode === 'B08' || destName.includes('silver') || destName.includes('silvr')) shortDest = 'Silvr Spg';
           else if (destCode === 'K08' || destName.includes('vienna')) shortDest = 'Vienna';
           else if (destCode === 'N06' || destName.includes('ashburn')) shortDest = 'Ashburn';
           else if (destCode === 'J03' || destName.includes('franconia')) shortDest = 'Franconia';
-          else shortDest = t.Destination || 'Train';
 
-          const lineBadgeHtml = showLineBadge ? getLineBadge(t.Line) : '';
+          const lineBadgeHtml = (t.Line && t.Line !== 'RD') ? getLineBadge(t.Line) : '';
 
           return (
-            '<div class="flex flex-col items-center justify-center rounded-lg border px-1 py-1.5 text-center min-w-0 ' + cardBorder + '">' +
+            '<div data-select-leg1="' + period + '" data-leg1-index="' + idx + '" class="cursor-pointer flex flex-col items-center justify-center rounded-lg border px-1 py-1.5 text-center min-w-0 transition active:scale-95 ' + cardBorder + '">' +
               '<div class="flex items-center gap-1 leading-none">' +
                 lineBadgeHtml +
-                '<span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">' +
+                '<span class="text-[9px] font-bold uppercase tracking-wider ' + (isSelected ? 'text-rose-300' : 'text-slate-400') + '">' +
                   (idx === 0 ? 'Next' : '#' + (idx + 1)) +
                 '</span>' +
               '</div>' +
@@ -439,6 +533,110 @@
               '</span>' +
             '</div>'
           );
+        });
+
+        // Add "Just Boarded" Button Box as the last slot in the grid
+        const boardBox = (
+          '<div data-action-board-train="' + period + '" class="cursor-pointer flex flex-col items-center justify-center rounded-lg border border-dashed border-emerald-500/50 bg-emerald-950/20 px-1 py-1 text-center hover:bg-emerald-950/40 active:scale-95">' +
+            '<span class="text-base">🚆</span>' +
+            '<span class="text-[10px] font-black uppercase text-emerald-300 leading-tight mt-0.5">On Board</span>' +
+            '<span class="text-[9px] text-slate-400 leading-none">Tap if riding</span>' +
+          '</div>'
+        );
+
+        return cards.join('') + boardBox;
+      }
+
+      // Renders Leg 2 Connecting Cards (Calculates true transfer window & highlights catchable trains)
+      function renderLeg2ConnectingCards(connectingTrains, leg1Trains, period) {
+        if (!connectingTrains || connectingTrains.length === 0) {
+          return '<div class="col-span-full rounded-lg border border-slate-800 bg-slate-950 py-2.5 text-center text-xs text-slate-400">No connecting trains reported</div>';
+        }
+
+        const selection = period === 'am' ? state.morningSelection : state.eveningSelection;
+        const totalRideMin = period === 'am' ? MORNING_RIDE_TRANSFER_MIN : EVENING_RIDE_TRANSFER_MIN;
+        let myArrivalMinutes = 0;
+
+        if (selection.onBoardSince) {
+          // If on board, calculate minutes left until reaching transfer platform
+          const elapsedMin = Math.floor((Date.now() - selection.onBoardSince) / 1000) / 60;
+          myArrivalMinutes = Math.max(0, totalRideMin - elapsedMin);
+        } else {
+          // If waiting, arrival = leg1 arrival minutes + travel & escalator time
+          const selectedTrain = (leg1Trains && leg1Trains.length > selection.index) ? leg1Trains[selection.index] : (leg1Trains ? leg1Trains[0] : null);
+          const leg1DepartureMin = selectedTrain ? getMinutesAsInt(selectedTrain.Min) : 0;
+          myArrivalMinutes = leg1DepartureMin + totalRideMin;
+        }
+
+        // Subtext updates: Pure train arrival with zero buffer
+        const subtextEl = document.getElementById(period === 'am' ? 'morningTransferSubtext' : 'eveningTransferSubtext');
+        if (subtextEl) {
+          subtextEl.textContent = 'Your train arrives in ~' + Math.round(myArrivalMinutes) + 'm (Ride: ' + totalRideMin + 'm)';
+        }
+
+        let firstCatchableFound = false;
+
+        return connectingTrains.slice(0, 4).map(function (t) {
+          const trainMin = getMinutesAsInt(t.Min);
+          const layoverMin = trainMin - myArrivalMinutes; // Difference between train arrival and your platform arrival
+          const isCatchable = layoverMin >= 0; // Train arrives AFTER you get to platform
+
+          let transferBadge = '';
+          let cardStyle = '';
+
+          if (!isCatchable) {
+            // Departs before you can reach the platform
+            transferBadge = '<span class="mt-1 block rounded bg-slate-900 px-1 py-0.5 text-[9px] font-bold text-slate-500">Leaves early</span>';
+            cardStyle = 'border-slate-800/50 bg-slate-950/40 opacity-45';
+          } else if (!firstCatchableFound) {
+            // FIRST CATCHABLE TRAIN (Raw train gap)
+            firstCatchableFound = true;
+            let cushionLabel = '';
+            let badgeBg = '';
+            const roundGap = Math.round(layoverMin);
+            if (roundGap <= 0) {
+              cushionLabel = '⚡ SPRINT (+0m)';
+              badgeBg = 'bg-rose-500/30 text-rose-200 border border-rose-500/60 animate-brd';
+            } else if (roundGap <= 2) {
+              cushionLabel = '🏃 SPRINT (+' + roundGap + 'm)';
+              badgeBg = 'bg-amber-500/25 text-amber-300 border border-amber-500/50';
+            } else {
+              cushionLabel = '⏱️ +' + roundGap + 'm gap';
+              badgeBg = 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40';
+            }
+            transferBadge = '<span class="mt-1 block rounded px-1 py-0.5 text-[9px] font-black ' + badgeBg + '">' + cushionLabel + '</span>';
+            cardStyle = 'border-emerald-500/90 bg-emerald-950/30 ring-2 ring-emerald-500/50';
+          } else {
+            // Backup train
+            transferBadge = '<span class="mt-1 block rounded bg-slate-900 px-1 py-0.5 text-[9px] font-bold text-slate-400">+' + Math.round(layoverMin) + 'm wait</span>';
+            cardStyle = 'border-slate-800/80 bg-slate-950/70';
+          }
+
+          const lineBadgeHtml = (t.Line && t.Line !== 'RD') ? getLineBadge(t.Line) : '';
+          const destCode = t.DestinationCode || '';
+          const destName = ((t.DestinationName || '') + ' ' + (t.Destination || '')).toLowerCase();
+
+          let shortDest = t.Destination || 'Train';
+          if (destCode === 'B11' || destName.includes('glenmont')) shortDest = 'Glenmont';
+          else if (destCode === 'G05' || destName.includes('largo')) shortDest = 'Largo';
+          else if (destCode === 'D13' || destName.includes('carrollton') || destName.includes('carr')) shortDest = 'New Carr';
+
+          return (
+            '<div class="flex flex-col items-center justify-center rounded-lg border px-1 py-1.5 text-center min-w-0 ' + cardStyle + '">' +
+              '<div class="flex items-center gap-1 leading-none">' +
+                lineBadgeHtml +
+                '<span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">' + t.Line + '</span>' +
+              '</div>' +
+              '<div class="font-mono-led text-2xl font-black tracking-tight leading-tight sm:text-3xl text-amber-300">' +
+                t.Min +
+              '</div>' +
+              '<span class="text-[9px] font-extrabold uppercase text-slate-400 leading-none">MIN</span>' +
+              '<span class="mt-0.5 block w-full truncate px-0.5 text-center text-[10px] font-semibold text-slate-300 leading-tight">' +
+                shortDest +
+              '</span>' +
+              transferBadge +
+            '</div>'
+          );
         }).join('');
       }
 
@@ -450,68 +648,75 @@
         if (state.timeMode === 'am_first') showMorningFirst = true;
         if (state.timeMode === 'pm_first') showMorningFirst = false;
 
-        const cardAM = document.getElementById('cardMorning');
-        const cardPM_Red = document.getElementById('cardEvening');
+        const cardAM_Red = document.getElementById('cardMorning');
+        const cardAM_C01 = document.getElementById('cardMetroCenterLower');
         const cardPM_Fed = document.getElementById('cardFederalTriangle');
+        const cardPM_Red = document.getElementById('cardEvening');
         const container = document.getElementById('commuteCardsContainer');
-        const badge = document.getElementById('commuteScheduleBadge');
 
         if (showMorningFirst) {
-          // Morning order: Silver Spring -> Federal Triangle -> Metro Center
-          container.appendChild(cardAM);
+          // Morning order: 1) Silver Spring -> 2) Metro Center Lower -> 3) Fed Triangle -> 4) Metro Center Upper
+          container.appendChild(cardAM_Red);
+          container.appendChild(cardAM_C01);
           container.appendChild(cardPM_Fed);
           container.appendChild(cardPM_Red);
-          badge.textContent = 'Morning Order';
-          cardAM.classList.add('ring-1', 'ring-amber-500/40');
+          cardAM_Red.classList.add('ring-1', 'ring-amber-500/40');
+          cardAM_C01.classList.add('ring-1', 'ring-sky-500/40');
           cardPM_Fed.classList.remove('ring-1', 'ring-sky-500/40');
           cardPM_Red.classList.remove('ring-1', 'ring-indigo-500/40');
         } else {
-          // Afternoon order: Federal Triangle FIRST, then Metro Center, then Silver Spring
+          // Afternoon order: 1) Federal Triangle -> 2) Metro Center Upper -> 3) Silver Spring -> 4) Metro Center Lower
           container.appendChild(cardPM_Fed);
           container.appendChild(cardPM_Red);
-          container.appendChild(cardAM);
-          badge.textContent = 'Afternoon Order';
+          container.appendChild(cardAM_Red);
+          container.appendChild(cardAM_C01);
           cardPM_Fed.classList.add('ring-1', 'ring-sky-500/40');
           cardPM_Red.classList.add('ring-1', 'ring-indigo-500/40');
-          cardAM.classList.remove('ring-1', 'ring-amber-500/40');
+          cardAM_Red.classList.remove('ring-1', 'ring-amber-500/40');
+          cardAM_C01.classList.remove('ring-1', 'ring-sky-500/40');
         }
       }
 
       function renderAll() {
         updateBoardOrder();
 
-        const morningTrains = state.trains
+        // 1. Morning Red Line trains at Silver Spring (B08)
+        const morningLeg1 = state.trains
           .filter(isShadyGroveBound)
           .sort(function (a, b) { return parseMinRank(a.Min) - parseMinRank(b.Min); });
 
-        const eveningTrains = state.trains
-          .filter(isGlenmontBound)
+        // 2. Morning Connecting trains at Metro Center Lower (C01)
+        const morningLeg2 = state.trains
+          .filter(isMetroCenterLowerBound)
           .sort(function (a, b) { return parseMinRank(a.Min) - parseMinRank(b.Min); });
 
-        const fedTriangleTrains = state.trains
+        // 3. Evening Leg 1 trains at Federal Triangle (D01)
+        const eveningLeg1 = state.trains
           .filter(isFederalTriangleBound)
           .sort(function (a, b) { return parseMinRank(a.Min) - parseMinRank(b.Min); });
 
-        // Pace Badges
-        const amPace = computePaceAdvisory(morningTrains);
+        // 4. Evening Connecting trains at Metro Center Upper (A01)
+        const eveningLeg2 = state.trains
+          .filter(isGlenmontBound)
+          .sort(function (a, b) { return parseMinRank(a.Min) - parseMinRank(b.Min); });
+
+        // Update Pace Badges
+        const amPace = computePaceAdvisory(morningLeg1);
         const amEl = document.getElementById('morningPaceBadge');
         amEl.textContent = amPace.text;
         amEl.className = 'rounded-md px-2 py-0.5 text-[10px] font-black uppercase tracking-wider ' + amPace.cls;
 
-        const pmPace = computePaceAdvisory(eveningTrains);
-        const pmEl = document.getElementById('eveningPaceBadge');
-        pmEl.textContent = pmPace.text;
-        pmEl.className = 'rounded-md px-2 py-0.5 text-[10px] font-black uppercase tracking-wider ' + pmPace.cls;
-
-        const fedPace = computePaceAdvisory(fedTriangleTrains);
+        const fedPace = computePaceAdvisory(eveningLeg1);
         const fedEl = document.getElementById('fedTrianglePaceBadge');
         fedEl.textContent = fedPace.text;
         fedEl.className = 'rounded-md px-2 py-0.5 text-[10px] font-black uppercase tracking-wider ' + fedPace.cls;
 
-        // Render Quick Minute Badges
-        document.getElementById('morningQuickMinutesRow').innerHTML = renderQuickMinuteBlocks(morningTrains, false);
-        document.getElementById('eveningQuickMinutesRow').innerHTML = renderQuickMinuteBlocks(eveningTrains, false);
-        document.getElementById('fedTriangleQuickMinutesRow').innerHTML = renderQuickMinuteBlocks(fedTriangleTrains, true);
+        // Render Cards
+        document.getElementById('morningQuickMinutesRow').innerHTML = renderLeg1Cards(morningLeg1, 'am');
+        document.getElementById('metroCenterLowerQuickMinutesRow').innerHTML = renderLeg2ConnectingCards(morningLeg2, morningLeg1, 'am');
+
+        document.getElementById('fedTriangleQuickMinutesRow').innerHTML = renderLeg1Cards(eveningLeg1, 'pm');
+        document.getElementById('eveningQuickMinutesRow').innerHTML = renderLeg2ConnectingCards(eveningLeg2, eveningLeg1, 'pm');
       }
 
       async function fetchWMATAPredictions() {
@@ -521,38 +726,41 @@
           state.trains = getSimulatedTrains();
           state.isLiveFeed = false;
           state.lastFetchTime = new Date();
-          document.getElementById('feedStatusText').textContent = 'Simulated';
-          document.getElementById('feedModeIndicator').textContent = 'Test Mode';
           updateLastUpdatedText();
           renderAll();
           return;
         }
 
-        // Queries Silver Spring (B08), Metro Center (A01), and Federal Triangle (D01)
-        const url = 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B08,A01,D01?api_key=' + encodeURIComponent(state.apiKey);
+        const stationCodes = ['B08', 'C01', 'A01', 'D01'];
         try {
-          const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          const data = await response.json();
-          if (data && Array.isArray(data.Trains)) {
-            state.trains = data.Trains;
-            state.isLiveFeed = true;
-            state.lastFetchTime = new Date();
-            document.getElementById('feedStatusText').textContent = 'Live Feed';
-            document.getElementById('feedStatusText').className = 'text-emerald-400 font-semibold';
-            document.getElementById('feedModeIndicator').textContent = 'Live WMATA API';
-            updateLastUpdatedText();
-            renderAll();
-            return;
-          }
-          throw new Error('Bad data format');
+          const fetchPromises = stationCodes.map(function (code) {
+            const url = 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/' + code + '?api_key=' + encodeURIComponent(state.apiKey);
+            return fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } })
+              .then(function (res) {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.json();
+              });
+          });
+
+          const results = await Promise.all(fetchPromises);
+          let combinedTrains = [];
+          results.forEach(function (data) {
+            if (data && Array.isArray(data.Trains)) {
+              combinedTrains = combinedTrains.concat(data.Trains);
+            }
+          });
+
+          state.trains = combinedTrains;
+          state.isLiveFeed = true;
+          state.lastFetchTime = new Date();
+          document.getElementById('feedModeIndicator').textContent = 'Live WMATA (B08, C01, A01, D01)';
+          updateLastUpdatedText();
+          renderAll();
         } catch (err) {
           state.trains = getSimulatedTrains();
           state.isLiveFeed = false;
           state.lastFetchTime = new Date();
-          document.getElementById('feedStatusText').textContent = 'Sandbox Preview';
-          document.getElementById('feedStatusText').className = 'text-amber-400 font-semibold';
-          document.getElementById('feedModeIndicator').textContent = 'Sandbox Isolated (Live outside)';
+          document.getElementById('feedModeIndicator').textContent = 'Fallback Preview Mode';
           updateLastUpdatedText();
           renderAll();
         }
@@ -587,6 +795,57 @@
       window.addEventListener('DOMContentLoaded', function () {
         loadSavedSettings();
 
+        // Leg 1 Card click delegation (Select train or tap "On Board")
+        document.addEventListener('click', function (e) {
+          // Select Train
+          const selectBox = e.target.closest('[data-select-leg1]');
+          if (selectBox) {
+            const period = selectBox.getAttribute('data-select-leg1');
+            const idx = parseInt(selectBox.getAttribute('data-leg1-index'), 10);
+            if (period === 'am') {
+              state.morningSelection.index = idx;
+              state.morningSelection.onBoardSince = null;
+            } else {
+              state.eveningSelection.index = idx;
+              state.eveningSelection.onBoardSince = null;
+            }
+            saveTripState(period);
+            renderAll();
+            showToast('Transfer calculated for Train #' + (idx + 1), false);
+            return;
+          }
+
+          // Tap "On Board"
+          const boardBtn = e.target.closest('[data-action-board-train]');
+          if (boardBtn) {
+            const period = boardBtn.getAttribute('data-action-board-train');
+            if (period === 'am') {
+              state.morningSelection.onBoardSince = Date.now();
+            } else {
+              state.eveningSelection.onBoardSince = Date.now();
+            }
+            saveTripState(period);
+            renderAll();
+            showToast('Trip active! Connecting trains tracked.', false);
+            return;
+          }
+
+          // Cancel "On Board"
+          const resetBtn = e.target.closest('[data-action-reset-trip]');
+          if (resetBtn) {
+            const period = resetBtn.getAttribute('data-action-reset-trip');
+            if (period === 'am') {
+              state.morningSelection.onBoardSince = null;
+            } else {
+              state.eveningSelection.onBoardSince = null;
+            }
+            saveTripState(period);
+            renderAll();
+            showToast('Trip ended. Boarding options restored.', false);
+            return;
+          }
+        });
+
         document.getElementById('btnRefreshNow').addEventListener('click', function () {
           fetchWMATAPredictions();
           showToast('Refreshed!', false);
@@ -602,20 +861,20 @@
         document.getElementById('btnCancelSettings').addEventListener('click', closeSettingsModal);
 
         document.getElementById('btnResetDemoKey').addEventListener('click', function () {
-          document.getElementById('inputApiKey').value = DEFAULT_DEMO_KEY;
-          showToast('Demo key set', false);
+          document.getElementById('inputApiKey').value = DEFAULT_USER_KEY;
+          showToast('Default key restored', false);
         });
 
         document.getElementById('btnSaveSettings').addEventListener('click', function () {
           const rawKey = document.getElementById('inputApiKey').value.trim();
-          state.apiKey = rawKey || DEFAULT_DEMO_KEY;
+          state.apiKey = rawKey || DEFAULT_USER_KEY;
           state.refreshSeconds = parseInt(document.getElementById('selectRefreshInterval').value, 10) || 20;
           state.timeMode = document.getElementById('selectTimeMode').value;
           state.forceDemo = document.getElementById('chkForceDemo').checked;
           saveSettingsToStorage();
           closeSettingsModal();
           fetchWMATAPredictions();
-          showToast('Settings saved!', false);
+          showToast('Saved!', false);
         });
 
         document.addEventListener('visibilitychange', function () {
